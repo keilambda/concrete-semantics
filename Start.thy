@@ -52,4 +52,14 @@ theorem double_add [simp]: "double m = add m m"
   apply auto
 done
 
+(* exercise 2.3 *)
+fun count :: "['a, 'a list] \<Rightarrow> nat" where
+"count el Nil = 0" |
+"count el (Cons x xs) = (if el = x then Suc (count el xs) else count el xs)"
+
+theorem count_le_length : "count x xs \<le> length xs"
+  apply (induction xs)
+  apply auto
+done
+
 end
