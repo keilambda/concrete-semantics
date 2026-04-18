@@ -75,4 +75,16 @@ theorem add_comm: "add x y = add y x"
   apply auto
 done
 
+fun double :: "nat \<Rightarrow> nat" where
+"double 0 = 0" |
+"double (Suc n) = Suc (Suc (double n))"
+
+value "double 2"
+value "double 3"
+
+theorem double_add [simp]: "double m = add m m"
+  apply (induction m)
+  apply auto
+done
+
 end
