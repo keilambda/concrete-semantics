@@ -66,4 +66,19 @@ theorem count_le_length : "count x xs \<le> length xs"
   apply auto
 done
 
+(* exercise 2.4 *)
+fun snoc :: "'a list \<Rightarrow> 'a \<Rightarrow> 'a list" where
+"snoc [] y = y # []" |
+"snoc (x # xs) y = x # snoc xs y"
+
+value "snoc [] x"
+value "snoc [x] y"
+value "snoc [x, y] z"
+
+fun reverse :: "'a list \<Rightarrow> 'a list" where
+"reverse [] = []" |
+"reverse (x # xs) = snoc (reverse xs) x"
+
+value "reverse [x, y, z]"
+
 end
