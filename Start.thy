@@ -54,8 +54,12 @@ done
 
 (* exercise 2.3 *)
 fun count :: "'a \<Rightarrow> 'a list \<Rightarrow> nat" where
-"count el Nil = 0" |
-"count el (Cons x xs) = (if el = x then Suc (count el xs) else count el xs)"
+"count el [] = 0" |
+"count el (x # xs) = (if el = x then Suc (count el xs) else count el xs)"
+
+value "count True []"
+value "count True [True]"
+value "count True [True, False, True]"
 
 theorem count_le_length : "count x xs \<le> length xs"
   apply (induction xs)
