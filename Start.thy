@@ -81,4 +81,21 @@ fun reverse :: "'a list \<Rightarrow> 'a list" where
 
 value "reverse [x, y, z]"
 
+(* rev (app (rev xs) (Cons x1 Nil)) = Cons x1 xs *)
+(* rev (app xs ys) = app (rev ys) (rev xs) *)
+
+(* reverse (snoc (reverse xs) a) = a # xs *)
+value "reverse (snoc (reverse [1, 2]) a) = a # [1, 2]"
+value "reverse (snoc [2, 1] a) = a # reverse [1, 2]"
+(* reverse (snoc xs a) = a # reverse xs *)
+lemma reverse_snoc [simp]: "reverse (snoc xs x) = x # reverse xs"
+  apply (induction xs)
+  apply auto
+done
+
+theorem reverse_reverse [simp]: "reverse (reverse xs) = xs"
+  apply (induction xs)
+  apply auto
+done
+
 end
