@@ -1,0 +1,2 @@
+check:
+  isabelle build -D .
