@@ -53,7 +53,7 @@ theorem double_add [simp]: "double m = add m m"
 done
 
 (* exercise 2.3 *)
-fun count :: "['a, 'a list] \<Rightarrow> nat" where
+fun count :: "'a \<Rightarrow> 'a list \<Rightarrow> nat" where
 "count el Nil = 0" |
 "count el (Cons x xs) = (if el = x then Suc (count el xs) else count el xs)"
 
