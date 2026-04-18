@@ -32,4 +32,24 @@ fun rev :: "'a list \<Rightarrow> 'a list" where
 value "rev (Cons True (Cons False Nil))"
 value "rev (Cons a (Cons b Nil))"
 
+lemma app_Nil2 [simp]: "app xs Nil = xs"
+  apply (induction xs)
+  apply auto
+done
+
+lemma app_assoc [simp]: "app (app xs ys) zs = app xs (app ys zs)"
+  apply (induction xs)
+  apply auto
+done
+
+lemma rev_app [simp]: "rev (app xs ys) = app (rev ys) (rev xs)"
+  apply (induction xs)
+  apply auto
+done
+
+theorem rev_rev [simp]: "rev (rev xs) = xs"
+  apply (induction xs)
+  apply auto
+done
+
 end
