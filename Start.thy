@@ -52,4 +52,9 @@ theorem rev_rev [simp]: "rev (rev xs) = xs"
   apply auto
 done
 
+value "1 + (2 :: nat)"
+value "1 + (2 :: int)"
+value "1 - (2 :: nat)"
+value "1 - (2 :: int)"
+
 end
