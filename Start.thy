@@ -57,4 +57,22 @@ value "1 + (2 :: int)"
 value "1 - (2 :: nat)"
 value "1 - (2 :: int)"
 
+(* exercise 2.2 *)
+theorem add_assoc [simp]: "add (add x y) z = add x (add y z)"
+  apply (induction x)
+  apply auto
+done
+
+declare add_02 [simp]
+
+lemma add_Suc_right [simp]: "add x (Suc y) = Suc (add x y)"
+  apply (induction x)
+  apply auto
+done
+
+theorem add_comm: "add x y = add y x"
+  apply (induction x)
+  apply auto
+done
+
 end
