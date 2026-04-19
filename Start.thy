@@ -228,13 +228,29 @@ fun explode :: "nat \<Rightarrow> tree0 \<Rightarrow> tree0" where
 "explode 0 t = t" |
 "explode (Suc n) t = explode n (Node0 t t)"
 
-value "nodes (explode 0 Tip0)"
-value "nodes (explode 1 Tip0)"
-value "nodes (explode 2 Tip0)"
-value "nodes (explode 3 Tip0)"
-value "nodes (explode 0 (Node0 Tip0 Tip0))"
-value "nodes (explode 1 (Node0 Tip0 Tip0))"
-value "nodes (explode 2 (Node0 Tip0 Tip0))"
-value "nodes (explode 3 (Node0 Tip0 Tip0))"
+(* nodes = 1 *)
+value "nodes (explode 0 Tip0)" (* 1 *)
+value "nodes (explode 1 Tip0)" (* 3 *)
+value "nodes (explode 2 Tip0)" (* 7 *)
+value "nodes (explode 3 Tip0)" (* 15 *)
+value "nodes (explode 4 Tip0)" (* 31 *)
+
+(* nodes = 3 *)
+value "nodes (explode 0 (Node0 Tip0 Tip0))" (* 3 *)
+value "nodes (explode 1 (Node0 Tip0 Tip0))" (* 7 *)
+value "nodes (explode 2 (Node0 Tip0 Tip0))" (* 15 *)
+value "nodes (explode 3 (Node0 Tip0 Tip0))" (* 31 *)
+
+(* nodes = 5 *)
+value "nodes (explode 0 (Node0 (Node0 Tip0 Tip0) Tip0))"
+
+value "nodes (Node0 (Node0 (Node0 Tip0 Tip0) Tip0) (Node0 Tip0 Tip0))"
+
+lemma nodes_explode_0 [simp]: "nodes (explode 0 t) = nodes t"
+  apply (induction t)
+  apply auto
+done
+
+theorem "nodes (explode n t) = _"
 
 end
