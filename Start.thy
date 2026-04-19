@@ -215,4 +215,26 @@ theorem itadd_eq_add : "itadd m n = add m n"
   apply auto
 done
 
+(* exercise 2.10 *)
+datatype tree0 = Tip0 | Node0 tree0 tree0
+
+fun nodes :: "tree0 \<Rightarrow> nat" where
+"nodes Tip0 = 1" |
+"nodes (Node0 l r) = 1 + nodes l + nodes r"
+
+value "nodes (Node0 Tip0 Tip0)"
+
+fun explode :: "nat \<Rightarrow> tree0 \<Rightarrow> tree0" where
+"explode 0 t = t" |
+"explode (Suc n) t = explode n (Node0 t t)"
+
+value "nodes (explode 0 Tip0)"
+value "nodes (explode 1 Tip0)"
+value "nodes (explode 2 Tip0)"
+value "nodes (explode 3 Tip0)"
+value "nodes (explode 0 (Node0 Tip0 Tip0))"
+value "nodes (explode 1 (Node0 Tip0 Tip0))"
+value "nodes (explode 2 (Node0 Tip0 Tip0))"
+value "nodes (explode 3 (Node0 Tip0 Tip0))"
+
 end
