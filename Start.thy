@@ -253,4 +253,21 @@ done
 
 theorem "nodes (explode n t) = _"
 
+fun explode2 :: "nat \<Rightarrow> tree0 \<Rightarrow> tree0" where
+"explode2 0 t = t" |
+"explode2 (Suc n) t = Node0 (explode2 n t) (explode2 n t)"
+
+value "nodes (explode2 3 Tip0)" (* 15 *)
+value "nodes (explode2 3 (Node0 Tip0 Tip0))" (* 31 *)
+
+lemma [simp]: "explode2 n (Node0 t t) = Node0 (explode2 n t) (explode2 n t)"
+  apply (induction n)
+  apply auto
+done
+
+lemma explode_eq_explode2 : "explode n t = explode2 n t"
+  apply (induction n arbitrary: t)
+  apply auto
+done
+
 end
