@@ -190,4 +190,19 @@ theorem map_intersperse : "map f (intersperse a xs) = intersperse (f a) (map f x
   apply auto
 done
 
+fun itrev :: "'a list \<Rightarrow> 'a list \<Rightarrow> 'a list" where
+"itrev [] ys = ys" |
+"itrev (x # xs) ys = itrev xs (x # ys)"
+
+(*
+lemma "itrev xs [] = rev xs"
+  apply (induction xs)
+  apply auto
+*)
+
+lemma "itrev xs ys = rev xs @ ys"
+  apply (induction xs arbitrary: ys)
+  apply auto
+done
+
 end
