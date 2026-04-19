@@ -283,4 +283,15 @@ lemma explode_eq_explode2 : "explode n t = explode2 n t"
   apply auto
 done
 
+(* exercise 2.11 *)
+datatype exp = Var | Const int | Add exp exp | Mul exp exp
+
+fun eval :: "exp \<Rightarrow> int \<Rightarrow> int" where
+"eval Var m = m" |
+"eval (Const n) m = n" |
+"eval (Add l r) m = eval l m + eval r m" |
+"eval (Mul l r) m = eval l m * eval r m"
+
+value "eval (Add (Mul Var Var) (Const 1)) 3"
+
 end
