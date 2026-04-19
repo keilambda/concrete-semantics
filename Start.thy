@@ -256,7 +256,15 @@ lemma nodes_explode_Suc [simp]: "nodes (explode (Suc n) t) = 2 * nodes (explode 
   apply auto
 done
 
-theorem "nodes (explode n t) = _"
+theorem "nodes (explode n t) = 2^n * nodes t + 2^n - 1"
+  apply (induction n arbitrary: t)
+  apply (auto simp: algebra_simps)
+done
+
+lemma "2^n * nodes t + 2^n - 1 = 2^n * (nodes t + 1) - 1"
+  apply (induction n arbitrary: t)
+  apply (auto simp: algebra_simps)
+done
 
 fun explode2 :: "nat \<Rightarrow> tree0 \<Rightarrow> tree0" where
 "explode2 0 t = t" |
